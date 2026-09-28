@@ -1,0 +1,19 @@
+{
+  "services": [
+    { "id": "laundry",  "name": "Standard Laundry",     "category": "Home Care",     "price": 800,  "duration": "24 hrs turnaround", "active": true },
+    { "id": "carwash",  "name": "Car Wash Basic",       "category": "Auto Care",     "price": 500,  "duration": "30 min",             "active": true },
+    { "id": "grocery",  "name": "Grocery Shopping",     "category": "Errands",       "price": 300,  "duration": "1–2 hrs",            "active": true },
+    { "id": "cleaning", "name": "House Cleaning (2BR)", "category": "Home Care",     "price": 2500, "duration": "3 hrs",              "active": true },
+    { "id": "plumbing", "name": "Plumbing Repair",      "category": "Maintenance",   "price": 1500, "duration": "1–2 hrs, call-out",  "active": true },
+    { "id": "delivery", "name": "Food Delivery",        "category": "Errands",       "price": 200,  "duration": "45 min",             "active": true },
+    { "id": "haircut",  "name": "Haircut & Style",      "category": "Personal Care", "price": 1000, "duration": "45 min",             "active": true }
+  ],
+  "staff": [
+    { "id": "stf-001", "name": "Peter Mwangi",  "role": "Cleaning & Laundry", "phone": "0711 222 333" },
+    { "id": "stf-002", "name": "Grace Achieng", "role": "Errands & Delivery", "phone": "0722 333 444" },
+    { "id": "stf-003", "name": "Samuel Otieno", "role": "Plumbing & Repairs", "phone": "0733 444 555" },
+    { "id": "stf-004", "name": "Faith Njeri",   "role": "Personal Care",      "phone": "0744 555 666" }
+  ],
+  "bookings": [],
+  "seq": 1
+}

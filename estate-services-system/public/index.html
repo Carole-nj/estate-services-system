@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greenridge Estate — Services Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="signboard">
+    <div class="signboard-top">
+      <div>
+        <div class="signboard-eyebrow">Greenridge Estate · Residents' Services</div>
+        <h1>Services Desk</h1>
+        <p class="tag">Book, track, and manage household services for the estate — from the front gate to your front door.</p>
+      </div>
+      <div class="signboard-stats">
+        <div class="sb-stat"><div class="n" id="hdr-total">–</div><div class="l">Bookings</div></div>
+        <div class="sb-stat"><div class="n" id="hdr-open">–</div><div class="l">Open</div></div>
+        <div class="sb-stat"><div class="n" id="hdr-revenue">–</div><div class="l">Booked value</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="book">New Booking</button>
+    <button class="tab-btn" data-tab="ledger">Bookings Ledger</button>
+    <button class="tab-btn" data-tab="staff">Staff</button>
+    <button class="tab-btn" data-tab="dash">Dashboard</button>
+  </div>
+
+  <!-- ===== NEW BOOKING ===== -->
+  <div class="panel active" id="panel-book">
+    <div class="grid-2">
+      <div class="card">
+        <h2>Choose a service</h2>
+        <p class="sub">Select one service for this booking.</p>
+        <div class="svc-grid" id="svc-grid"><div class="loading">Loading services…</div></div>
+      </div>
+
+      <div class="card">
+        <h2>Resident details</h2>
+        <p class="sub">We'll use this to confirm and schedule the visit.</p>
+        <form id="booking-form">
+          <label for="f-name">Resident name</label>
+          <input id="f-name" required placeholder="e.g. Wanjiru Kamau">
+
+          <div class="row-2">
+            <div>
+              <label for="f-unit">House / Unit no.</label>
+              <input id="f-unit" required placeholder="e.g. B4-12">
+            </div>
+            <div>
+              <label for="f-phone">Phone number</label>
+              <input id="f-phone" required placeholder="e.g. 0712 345 678">
+            </div>
+          </div>
+
+          <div class="row-2">
+            <div>
+              <label for="f-date">Preferred date</label>
+              <input id="f-date" type="date" required>
+            </div>
+            <div>
+              <label for="f-time">Preferred time</label>
+              <input id="f-time" type="time" required>
+            </div>
+          </div>
+
+          <label for="f-notes">Notes for the service team (optional)</label>
+          <textarea id="f-notes" placeholder="Gate code, specific instructions, items to buy, etc."></textarea>
+
+          <div class="est-note" id="est-note" style="display:none;"></div>
+
+          <button type="submit" class="btn btn-primary btn-block" id="submit-btn" disabled>Select a service to continue</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LEDGER ===== -->
+  <div class="panel" id="panel-ledger">
+    <div class="card">
+      <h2>Bookings ledger</h2>
+      <p class="sub">Every booking made at the desk, newest first.</p>
+
+      <div class="ledger-controls">
+        <input type="search" id="search-input" placeholder="Search by resident, unit, or reference…">
+        <select id="filter-status">
+          <option value="all">All statuses</option>
+          <option value="Pending">Pending</option>
+          <option value="Confirmed">Confirmed</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+        <select id="filter-service"><option value="all">All services</option></select>
+      </div>
+
+      <div class="ledger" id="ledger-list"><div class="loading">Loading bookings…</div></div>
+    </div>
+  </div>
+
+  <!-- ===== STAFF ===== -->
+  <div class="panel" id="panel-staff">
+    <div class="grid-2">
+      <div class="card">
+        <h2>Add a staff member</h2>
+        <p class="sub">Staff can be assigned to bookings from the ledger.</p>
+        <form id="staff-form">
+          <label for="s-name">Name</label>
+          <input id="s-name" required placeholder="e.g. John Mutua">
+          <label for="s-role">Role / specialty</label>
+          <input id="s-role" placeholder="e.g. Cleaning & Laundry">
+          <label for="s-phone">Phone number</label>
+          <input id="s-phone" placeholder="e.g. 0700 111 222">
+          <button type="submit" class="btn btn-primary btn-block">Add staff member</button>
+        </form>
+      </div>
+      <div class="card">
+        <h2>Current staff</h2>
+        <p class="sub">Everyone currently on the roster.</p>
+        <div id="staff-list"><div class="loading">Loading staff…</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DASHBOARD ===== -->
+  <div class="panel" id="panel-dash">
+    <div class="stat-grid">
+      <div class="stat-card"><div class="l">Total bookings</div><div class="n" id="d-total">–</div></div>
+      <div class="stat-card"><div class="l">Completed</div><div class="n" id="d-completed">–</div></div>
+      <div class="stat-card"><div class="l">Cancelled</div><div class="n" id="d-cancelled">–</div></div>
+      <div class="stat-card accent"><div class="l">Booked value</div><div class="n" id="d-revenue">–</div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h2>Bookings by service</h2>
+        <p class="sub">Which services residents are requesting most.</p>
+        <div id="svc-bars"></div>
+      </div>
+      <div class="card">
+        <h2>Bookings by status</h2>
+        <p class="sub">Where things stand right now.</p>
+        <div id="status-bars"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Greenridge Estate Services Desk — data persisted on the server in data/db.json</footer>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
