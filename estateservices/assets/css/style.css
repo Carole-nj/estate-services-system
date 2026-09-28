@@ -1,0 +1,17 @@
+:root{ --ink:#202B23; --ochre:#C6841A; --ochre-dark:#9C6712; --teal:#2E6459; --bg:#EEF0E7; }
+body{ background:var(--bg); color:var(--ink); font-family:'Segoe UI',system-ui,sans-serif; }
+.app-navbar{ background:linear-gradient(180deg,#26362C 0%,#1D2A22 100%); }
+.app-navbar .navbar-brand{ color:#F3F0E3 !important; }
+.app-navbar .nav-link{ color:#C6D4C8 !important; }
+.app-navbar .nav-link:hover{ color:#fff !important; }
+.role-pill{ font-size:10px; vertical-align:middle; margin-left:4px; }
+.notif-badge{ position:absolute; top:2px; right:-2px; font-size:10px; padding:2px 5px; }
+.notif-dropdown{ width:300px; max-height:360px; overflow-y:auto; }
+.card{ border:1px solid #DDE1D2; box-shadow:0 1px 2px rgba(32,43,35,.06); }
+.price-tag{ font-weight:600; color:var(--ochre-dark); }
+.stat-card .num{ font-size:28px; font-weight:700; }
+.stat-card .lbl{ font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:#6b756a; }
+.btn-ochre{ background:var(--ochre); border-color:var(--ochre); color:#fff; }
+.btn-ochre:hover{ background:var(--ochre-dark); border-color:var(--ochre-dark); color:#fff; }
+table.table thead{ background:#F7F8F1; }
+@media print{ .app-navbar, footer, .no-print{ display:none !important; } }
